@@ -10,7 +10,6 @@ function setup(){
 function draw(){
     background(0);
     paddle.draw();
-    
     ball.update();
     ball.draw();
     paddle.update(ball);
