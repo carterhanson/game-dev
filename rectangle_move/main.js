@@ -5,13 +5,15 @@ function setup(){
     createCanvas(500, 500);
 
     //rect(x, y, rectWidth, rectHeight);
-    rectangle = new Rectangle(200, 300, 50, 50);
+    rectangle = new Rectangle(0, 300, 15, 50);
 }
 
 function draw(){
     background(0);
 
     rectangle.draw();
+    rectangle.moveUp();
+    rectangle.moveDown();
 }
 
 class Rectangle{
@@ -29,10 +31,14 @@ class Rectangle{
     }
 
     moveUp(){
-
+        if(keyIsDown(UP_ARROW)){
+            this.y -= 5;
+        }
     }
 
     moveDown(){
-
+        if(keyIsDown(DOWN_ARROW)){
+            this.y += 5;
+        }
     }
 }
