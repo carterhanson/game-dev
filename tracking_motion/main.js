@@ -4,13 +4,16 @@ let ball, paddle;
 function setup(){
     createCanvas(500, 500);
     ball = new Ball(250, 250, 20, 20, 3, 2);
+    paddle = new Paddle(400, 400, 50, 50);
 }
 
 function draw(){
     background(0);
-
+    paddle.draw();
+    
     ball.update();
     ball.draw();
+    paddle.update(ball);
 }
 
 class Ball{
@@ -48,5 +51,23 @@ class Ball{
         if(this.hasHitYWall()){
             this.yVelocity = -this.yVelocity;
         }
+    }
+
+
+}
+class Paddle{
+    constructor(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    draw(){
+        rect(this.x, this.y, this.width, this.height);
+    }
+    
+    update(ball){
+        this.y = ball.y - this.height / 2;
     }
 }
