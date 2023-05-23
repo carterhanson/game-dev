@@ -11,8 +11,6 @@ function draw(){
 
     ball.update();
     ball.draw();
-    ball.hasHitXWall();
-    ball.hasHitYWall();
 }
 
 class Ball{
