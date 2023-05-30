@@ -3,8 +3,8 @@ let ball, paddle;
 
 function setup(){
     createCanvas(500, 500);
-    ball = new Ball(250, 250, 20, 20, 3, 2);
-    paddle = new Paddle(400, 400, 50, 50);
+    ball = new Ball(250, 250, 20, 20, 15, 12);
+    paddle = new Paddle(485, 400, 15, 50);
 }
 
 function draw(){
@@ -51,9 +51,8 @@ class Ball{
             this.yVelocity = -this.yVelocity;
         }
     }
-
-
 }
+
 class Paddle{
     constructor(x, y, width, height){
         this.x = x;
