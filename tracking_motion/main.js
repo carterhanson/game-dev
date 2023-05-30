@@ -1,18 +1,20 @@
-let ball, paddle;
+let ball, paddle, paddle2;
 
 
 function setup(){
     createCanvas(500, 500);
-    ball = new Ball(250, 250, 20, 20, 15, 12);
-    paddle = new Paddle(485, 400, 15, 50);
+    ball = new Ball(250, 250, 20, 20, 3, 2);
+    paddle = new Paddle(400, 400, 50, 50);
 }
 
 function draw(){
     background(0);
     paddle.draw();
+    paddle2.draw();
     ball.update();
     ball.draw();
     paddle.update(ball);
+    paddle2.update(ball);
 }
 
 class Ball{
@@ -50,6 +52,7 @@ class Ball{
         if(this.hasHitYWall()){
             this.yVelocity = -this.yVelocity;
         }
+
     }
 }
 
