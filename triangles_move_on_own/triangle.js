@@ -1,9 +1,10 @@
 class Triangle {
+    static SPEED = 2;
     constructor() {
         this.x = 0;
         this.y = random(height);
         this.size = random(30, 100);
-        this.speed = 2;
+        this.speed = Triangle.SPEED;
         this.yDirection = random([-1, 1]);  // Randomly move up or down
     }
 
