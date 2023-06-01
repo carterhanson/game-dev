@@ -3,7 +3,7 @@ const pipes = [];
 const SPACE_BAR = 32;
 const FRAME_AMOUNT = 100;
 function setup() {
-createCanvas(400, 600);
+    createCanvas(400, 600);
     //create the bird
     bird = new Bird();
     //populate the pipes array with one PipePair initially to start
@@ -12,17 +12,32 @@ createCanvas(400, 600);
 
 function draw() {
     //set the background
+    background(0);
     //draw and update the bird
+    bird.draw();
+    bird.update();
+    addPipes();
+    
     //add a new PipePair every FRAME_AMOUNT frames
     if(frameCount % FRAME_AMOUNT === 0){
     //add pipes
     }
     //render the pipes
 }
+function keyPressed() {
+    if (keyCode == SPACE_BAR) {
+      bird.up();
+    }
+}
 /*
 Add one new PipePair to the pipes array
 */
 function addPipes(){
+    for(let i = pipes.length - 1; i >= 0; i--){
+        pipes[i].draw();
+        console.log(pipes[i]);
+    }
+    
 }
 /*
 Removes the pipe from the given index.
