@@ -3,7 +3,7 @@ let ball, paddle, paddle2;
 
 function setup(){
     createCanvas(500, 500);
-    ball = new Ball(300, 200, 20, 20, 7, 5);
+    ball = new Ball(200, 20, 20, 20, 17, 5);
     paddle = new Paddle(00, 400, 15, 50);
     paddle2 = new Paddle(485, 200, 15, 50);
 }
@@ -55,9 +55,8 @@ class Ball{
         }
 
     }
-
-
 }
+
 class Paddle{
     constructor(x, y, width, height){
         this.x = x;
