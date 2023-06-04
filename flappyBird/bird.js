@@ -21,7 +21,6 @@ class Bird {
     }
     //draws and colors the bird - use the ellipse() function to represent to bird
     draw() {
-        fill(255);
         ellipse(this.x, this.y, 32, 32);
     }
     /* Used to update the bird's position, velocity, etc. */

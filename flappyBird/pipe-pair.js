@@ -5,19 +5,18 @@ class PipePair{
     Must set:
     - x (x-position of the PipePair)
     - top
-    flappy bird 4
     - bottom
     - width
     - speed
     - highlight (boolean representing if this PipePair must be highlighted)
     */
     constructor(){
-        this.x = random(width);
-        this.top = 0;
-        this.bottom = 50;
+        this.x = width;
+        this.top = random(250, 300);
+        this.bottom = random(250, 300);
         this.width = PipePair.WIDTH;
         this.speed = PipePair.SPEED;
-        //this.highlight = false;
+        this.highlight = false;
     }
     /*
     Draws out the PipePair. Will need to fill with initial color, and will
@@ -26,14 +25,18 @@ class PipePair{
     draw() {
     //will need to call rect() twice - once for the top pipe, and once
     //for the bottom pipe
-        rect(this.x, this.top, this.bottom, this.width, this.speed);
-        
+    
+        rect(this.x, 0, this.width, this.top);
+        rect(this.x, 450, this.width, this.bottom);
+        // if(this.highlight = true){
+        //     fill(255, 0, 0);
+        // }
     }
     /*
     Will be used to update the x-position of the PipePair.
     */
     update(){
-        this.x += this.speed;
+        this.x -= this.speed;
     }
     /*
     Determines whether or not the PipePair is off screen.

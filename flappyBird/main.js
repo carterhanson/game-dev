@@ -16,13 +16,15 @@ function draw() {
     //draw and update the bird
     bird.draw();
     bird.update();
-    addPipes();
     
     //add a new PipePair every FRAME_AMOUNT frames
     if(frameCount % FRAME_AMOUNT === 0){
     //add pipes
+        pipes.push(new PipePair());
     }
     //render the pipes
+    renderPipes();
+    
 }
 function keyPressed() {
     if (keyCode == SPACE_BAR) {
@@ -35,7 +37,6 @@ Add one new PipePair to the pipes array
 function addPipes(){
     for(let i = pipes.length - 1; i >= 0; i--){
         pipes[i].draw();
-        console.log(pipes[i]);
     }
     
 }
@@ -44,6 +45,11 @@ Removes the pipe from the given index.
 Use this method to remove pipes as they leave the screen
 */
 function removePipe(pipeIndex){
+    for(let i = pipes.length - 1; i >= 0; i--){
+        if(pipes[i].isOffScreen()){
+            pipes.splice(pipeIndex, 1);
+        }
+    }
 }
 /*
 Will add PipePairs to the pipes array, draw the pipes, update the pipes,
@@ -51,6 +57,8 @@ detect collisions, and remove pipes once they leave the screen.
 */
 function renderPipes(){
     for(let i = pipes.length - 1; i >= 0; i--){
+        pipes[i].draw();
+        pipes[i].update();
     //perform necessary operations described above in here.
     }
 }
@@ -67,4 +75,11 @@ range of being able to hit the PipePair, and another function to
 then determine if the bird is touching the PipePair via the
 x-coordinates.
 */
+    let isWithinYRange = bird.y > pipe.y && bird.y < pipe.y + pipe.top;
+    let isWithinXRange = bird.x > pipe.x && bird.x < pipe.x + pipe.bottom; 
+
+    if(isWithinXRange && isWithinYRange){
+        console.log("hit");
+    }
+
 }
