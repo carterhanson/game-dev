@@ -45,11 +45,7 @@ Removes the pipe from the given index.
 Use this method to remove pipes as they leave the screen
 */
 function removePipe(pipeIndex){
-    for(let i = pipes.length - 1; i >= 0; i--){
-        if(pipes[i].isOffScreen()){
-            pipes.splice(pipeIndex, 1);
-        }
-    }
+    pipes.splice(pipeIndex, 1);
 }
 /*
 Will add PipePairs to the pipes array, draw the pipes, update the pipes,
@@ -59,8 +55,27 @@ function renderPipes(){
     for(let i = pipes.length - 1; i >= 0; i--){
         pipes[i].draw();
         pipes[i].update();
+        // console.log("bird y: " + bird.y);
+        // console.log("bottom pipe: " + pipes[i].bottom);
+        // console.log("bird.x " + bird.x);
+        // console.log(bird.width);
+        // console.log("pipes x: " + pipes[i].x);
+        // console.log("top pipe: " + pipes[i].top);
+        // console.log("combined pipes: " + pipes[i].bottom + pipes[i].top);
+        // console.log("pipes width: " + pipes[i].width)
+        // console.log("pipes x + width: " + pipes[i].x + pipes[i].width);
+    
+
+        if(collision(bird,pipes[i])){
+            console.log("hit");
+        }
+
+        if(pipes[i].isOffScreen()){
+            removePipe(pipes[i]);
+        }
     //perform necessary operations described above in here.
     }
+    
 }
 /*
 Detects collisions between the bird and the PipePairs
@@ -75,11 +90,11 @@ range of being able to hit the PipePair, and another function to
 then determine if the bird is touching the PipePair via the
 x-coordinates.
 */
-    let isWithinYRange = bird.y > pipe.y && bird.y < pipe.y + pipe.top;
-    let isWithinXRange = bird.x > pipe.x && bird.x < pipe.x + pipe.bottom; 
-
-    if(isWithinXRange && isWithinYRange){
-        console.log("hit");
-    }
+    // let isWithinXRange = bird.x > pipe.x && bird.x < pipe.width;
+    // let isWithinYRange = bird.y > pipe.top + pipe.bottom || bird.y > pipe.top + pipe.bottom;
+   
+    // return isWithinYRange;
+    // let isWithinVerticalRange = bird.y > pipe.top && bird.y > pipe.bottom;
+    // return isWithinVerticalRange;
 
 }

@@ -1,15 +1,25 @@
 let ball, leftPaddle, rightPaddle;
+let bgImg = null;
+let leftPaddleImg = null;
+let rightPaddleImg = null;
+
+
+function preload(){
+    bgImg = loadImage('./assets/snowy_mountains.png');
+    leftPaddleImg = loadImage('./assets/red_saber.png');
+    rightPaddleImg = loadImage('./assets/blue_saber.png');
+}
 
 function setup(){
     createCanvas(500, 500);
 
-    leftPaddle = new Paddle(10, height / 2);
-    rightPaddle = new Paddle(width - 20, height / 2, UP_ARROW, DOWN_ARROW);
+    leftPaddle = new Paddle(leftPaddleImg, 10, height / 2);
+    rightPaddle = new Paddle(rightPaddleImg, width - 20, height / 2, UP_ARROW, DOWN_ARROW);
     ball = new Ball(width / 2, height / 2);
 }
 
 function draw(){
-    background(0);
+    background(bgImg);
 
     leftPaddle.update(ball);
     leftPaddle.draw();
@@ -19,7 +29,7 @@ function draw(){
 
     ball.update();
     ball.draw();
-
+    
     if(ball.hits(leftPaddle) || ball.hits(rightPaddle)){
         ball.changeDirection();
     }
@@ -98,7 +108,8 @@ class Ball{
 }
 
 class Paddle{
-    constructor(x, y, upKey = null, downKey = null){
+    constructor(paddleImg, x, y, upKey = null, downKey = null){
+        this.paddleImg = paddleImg;
         this.x = x;
         this.y = y;
         this.width = 10;
@@ -136,6 +147,7 @@ class Paddle{
     }
 
     draw(){
-        rect(this.x, this.y, this.width, this.height);
+        image(this.paddleImg, this.x, this.y, this.width, this.height);
+        
     }
 }

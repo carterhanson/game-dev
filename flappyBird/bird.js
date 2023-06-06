@@ -14,6 +14,7 @@ class Bird {
     constructor() {
         this.x = Bird.X_POSITION;
         this.y = height / 2;
+        this.width = Bird.WIDTH;
         this.gravity = Bird.GRAVITY;
         this.lift = Bird.LIFT;
         this.velocity = 0;
@@ -21,7 +22,7 @@ class Bird {
     }
     //draws and colors the bird - use the ellipse() function to represent to bird
     draw() {
-        ellipse(this.x, this.y, 32, 32);
+        ellipse(this.x, this.y, this.width, 32);
     }
     /* Used to update the bird's position, velocity, etc. */
     update() {
