@@ -12,9 +12,9 @@ class PipePair{
     */
     constructor(){
         this.x = width;
-        this.top = random(250, 300);
-        this.bottom = random(250, 300);
+        this.y = 400;
         this.width = PipePair.WIDTH;
+        this.height = random(200, height / 2);
         this.speed = PipePair.SPEED;
         this.highlight = false;
     }
@@ -26,11 +26,11 @@ class PipePair{
     //will need to call rect() twice - once for the top pipe, and once
     //for the bottom pipe
     
-        rect(this.x, 0, this.width, this.top);
-        rect(this.x, 450, this.width, this.bottom);
-        // if(this.highlight = true){
-        //     fill(255, 0, 0);
-        // }
+        rect(this.x, 0, this.width, this.height);
+        rect(this.x, this.y , this.width, this.height);
+        if(this.highlight == true){
+            fill(255, 0, 0);
+        }
     }
     /*
     Will be used to update the x-position of the PipePair.
@@ -43,6 +43,6 @@ class PipePair{
     @return boolean Whether the PipePair is off screen
     */
     isOffScreen(){
-        return this.x - this.size / 2 > width;
+        return this.x - this.width < 0;
     }
 }
