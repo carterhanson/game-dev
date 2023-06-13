@@ -12,8 +12,8 @@ class PipePair{
     */
     constructor(){
         this.x = width;
-        this.top = random(height / 3, 250);
-        this.bottom = random(height / 3, 250);
+        this.top = random(height / 2);
+        this.bottom = random(height / 2);
         this.width = PipePair.WIDTH;
         this.speed = PipePair.SPEED;
         this.highlight = false;
@@ -28,7 +28,7 @@ class PipePair{
     
         rect(this.x, 0, this.width, this.top);
         rect(this.x, height - this.bottom, this.width, this.bottom);
-        // if(this.highlight = true){
+        // if(this.highlight){
         //     fill(255, 0, 0);
         // }
     }
