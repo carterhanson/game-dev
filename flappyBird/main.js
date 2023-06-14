@@ -2,6 +2,18 @@ let bird;
 const pipes = [];
 const SPACE_BAR = 32;
 const FRAME_AMOUNT = 100;
+let bgImg = null;
+let topPipeImg = null;
+let bottomPipeImg = null;
+let birdImg = null;
+
+function preload(){
+    bgImg = loadImage('./assets/flappy_bird_environment.png');
+    topPipeImg = loadImage('./assets/top_pipe.png');
+    bottomPipeImg = loadImage('./assets/bottom_pipe.png');
+    birdImg = loadImage('./assets/bird.png');
+}
+
 function setup() {
     createCanvas(400, 600);
     //create the bird
@@ -12,7 +24,7 @@ function setup() {
 
 function draw() {
     //set the background
-    background(0);
+    background(bgImg);
     //draw and update the bird
     bird.draw();
     bird.update();
@@ -35,7 +47,7 @@ function keyPressed() {
 Add one new PipePair to the pipes array
 */
 function addPipes(){
-        pipes[i].push(new PipePair());
+    pipes[i].push(new PipePair());
 }
 /*
 Removes the pipe from the given index.
@@ -44,7 +56,6 @@ Use this method to remove pipes as they leave the screen
 function removePipe(pipeIndex){
     pipes.splice(pipeIndex, 1);
 }
-
 /*
 Will add PipePairs to the pipes array, draw the pipes, update the pipes,
 detect collisions, and remove pipes once they leave the screen.
@@ -55,15 +66,12 @@ function renderPipes(){
         pipes[i].draw();
         pipes[i].update();
         if(pipes[i].isOffScreen()){
-            removePipe([i]);
+            removePipe(pipes[i]);
         }
-        if(collision(bird, pipes[i])){
-            console.log("hit");
-        }
+        collision(bird, pipes[i]);
     //perform necessary operations described above in here.
     }
     
-
 }
 /*
 Detects collisions between the bird and the PipePairs
@@ -78,8 +86,11 @@ range of being able to hit the PipePair, and another function to
 then determine if the bird is touching the PipePair via the
 x-coordinates.
 */
-    return bird.x + bird.width > pipe.x &&
-        bird.x < pipe.x + pipe.width &&
-        bird.y + bird.height > pipe.y &&
-        bird.y < pipe.y + pipe.height;
+    let isWithinXRange = bird.x + bird.width > pipe.x && bird.x < pipe.x + pipe.width;
+    let isWithinYRange = bird.y + bird.width < (height - pipe.bottom) && bird.y > pipe.top;
+    if(!isWithinYRange && isWithinXRange){
+        console.log("hit");
+    }
+    
+
 }

@@ -11,10 +11,12 @@ class PipePair{
     - highlight (boolean representing if this PipePair must be highlighted)
     */
     constructor(){
+        this.topPipeImg = topPipeImg;
+        this.bottomPipeImg = bottomPipeImg;
+        this.top = random(height / 2);
+        this.bottom = random(height / 2);
         this.x = width;
-        this.y = 400;
         this.width = PipePair.WIDTH;
-        this.height = random(200, height / 2);
         this.speed = PipePair.SPEED;
         this.highlight = false;
     }
@@ -26,11 +28,9 @@ class PipePair{
     //will need to call rect() twice - once for the top pipe, and once
     //for the bottom pipe
     
-        rect(this.x, 0, this.width, this.height);
-        rect(this.x, this.y , this.width, this.height);
-        if(this.highlight == true){
-            fill(255, 0, 0);
-        }
+        image(this.topPipeImg, this.x, 0, this.width, this.top);
+        image(this.bottomPipeImg, this.x, height - this.bottom, this.width, this.bottom);
+                
     }
     /*
     Will be used to update the x-position of the PipePair.
@@ -43,6 +43,6 @@ class PipePair{
     @return boolean Whether the PipePair is off screen
     */
     isOffScreen(){
-        return this.x - this.width < 0;
+        return this.x + this.width < 0;
     }
 }
