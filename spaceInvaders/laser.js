@@ -17,7 +17,7 @@ class Laser{
     }
 
     update(){
-        //make laser move upward
+        // Make laser move upward
         this.y -= Laser.SPEED;
     }
 
@@ -30,6 +30,10 @@ class Laser{
     }
 
     hits(enemy){
+			/*
+				TODO: Implement. This method takes in a single Enemy and determines
+							If the laser has hit this enemy which was passed.
+			*/
 
     }
 
