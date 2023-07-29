@@ -1,10 +1,11 @@
 class Player {
   static SPEED = 5;
-  static DIAMETER = 20;
+  static DIAMETER = 30;
 
   constructor(x, y){
+    this.shipImg = shipImg;
     this.x = x;
-    this.y = y;
+    this.y = 570;
     this.diameter = Player.DIAMETER;
     this.radius = this.diameter / 2;
     
@@ -12,7 +13,7 @@ class Player {
 
   draw(){
       fill(255);
-      ellipse(this.x, this.y, this.diameter, this.diameter);
+      image(this.shipImg, this.x, this.y, this.diameter, this.diameter);
 
   }
 

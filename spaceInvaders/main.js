@@ -7,9 +7,16 @@ const ENEMY_ROWS = 5; // feel free to change
 let player = null;
 let explosionSound = null; // used when enemy hit
 let laserSound = null;
+let shipImg = null;
+let enemyImg = null;
+let bgImg = null;
 
 function preload(){
     laserSound = loadSound('assets/laser_fire.mp3');
+    explosionSound = loadSound('assets/ship_explosion.mp3');
+    shipImg = loadImage('assets/ship.png');
+    enemyImg = loadImage('assets/enemy.png');
+    bgImg = loadImage('assets/bgImg.jpg')
 		// TODO: register and set the explosion sound on the Enemy.
 
     Laser.fireSound = laserSound;
@@ -23,12 +30,14 @@ function setup(){
 }
 
 function draw(){
-    background(0);
+    background(bgImg);
     
+    renderEnemies();
     player.draw();
     player.move();
 
     renderLasers();
+    dropEnemiesAndReverseDirection();
     
 }
 
@@ -50,6 +59,8 @@ function renderLasers(){
         if(lasers[i].isOffScreen()){
             //remove from array
             lasers.splice(i, 1);
+        }else{
+            checkEnemyHit(lasers[i], i);
         }
     }
 }
@@ -73,17 +84,41 @@ function keyPressed(){
 	Remember to consider where these methods should be called as well.
 */
 
-/*
+
 function renderEnemies(){
-    // Update and draw all enemies		    
+    // Update and draw all enemies
+    for (let i = 0; i < enemies.length; i++) {
+        const enemy = enemies[i];
+        enemy.update();
+        enemy.draw();
+    }		    
 }
 
 function dropEnemiesAndReverseDirection(){
-    
+    let shouldChangeDirection = false;
+
+    for(let i = 0; i < enemies.length; i++){
+        if(enemies[i].hasHitSideOfScreen()){
+            shouldChangeDirection = true;
+            break;
+        }
+    }
+
+    if(shouldChangeDirection) {
+        for(let i = 0; i < enemies.length; i++){
+            enemies[i].dropAndReverseDirection();
+        }
+    }
 }
 
 function checkEnemyHit(laser, laserIndex){
     // Check if laser hits any enemy
-    
+    for(let i = 0; i < enemies.length; i++){
+        if(laser.hits(enemies[i])){
+            explosionSound.play();
+            enemies.splice(i, 1);
+            lasers.splice(laserIndex, 1);
+            break;
+        }
+    }
 }
-*/

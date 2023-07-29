@@ -30,10 +30,27 @@ class Laser{
     }
 
     hits(enemy){
-			/*
-				TODO: Implement. This method takes in a single Enemy and determines
-							If the laser has hit this enemy which was passed.
-			*/
+		const enemyTop = enemy.y;
+        const enemyBottom = enemy.y + enemy.size;
+        const enemyLeft = enemy.x;
+        const enemyRight = enemy.x + enemy.size;
+
+        const laserTop = this.y - this.radius;
+        const laserBottom = this.y + this.radius;
+        const laserLeft = this.x - this.radius;
+        const laserRight = this.x + this.radius;
+
+
+        if(
+            laserBottom >= enemyTop &&
+            laserTop <= enemyBottom &&
+            laserRight >= enemyLeft &&
+            laserLeft <= enemyRight
+        ){
+            return true;
+        }
+
+        return false;
 
     }
 

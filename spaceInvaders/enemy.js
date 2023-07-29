@@ -7,6 +7,7 @@ class Enemy{
 		static exlosionSound; // All enemies will make the same sound when exploding.
 
     constructor(x, y){
+        this.enemyImg = enemyImg;
         this.x = x;
         this.y = y;
         this.size = Enemy.SIZE;
@@ -14,11 +15,11 @@ class Enemy{
     }
 
     draw(){
-        rect(this.x, this.y, this.size, this.size);
+      image(this.enemyImg, this.x, this.y, this.size, this.size);
     }
 
     update(){
-			// TODO: Implement
+		  this.x += this.xVelocity;
     }
 		
 		/*
@@ -27,23 +28,24 @@ class Enemy{
 			become stuck.
 		*/
 		
-		/*
+		
 		sideEdge(){
-        
+      return this.x + this.size >= width || this.x <= 0;
     }
 
     bottomEdge(){
-        
+      return this.y + this.size >= height;
     }
 
     hasHitSideOfScreen(){
-        
+      return this.sideEdge();
     }
 		
 		dropAndReverseDirection(){
-        
+      this.y += Enemy.DROP;
+      this.xVelocity *= -1;
     }
 
-		*/
+		
 
 }
