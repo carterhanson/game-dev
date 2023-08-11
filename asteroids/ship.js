@@ -14,8 +14,9 @@ class Ship{
   
     update() {
       // This is an optional method to implement if you choose to have the
-          // ship be able to "fly" around.
-          this.setRotation(mouseX, mouseY);
+      // ship be able to "fly" around.
+      this.setRotation(mouseX, mouseY);
+          
     }
   
     hits(asteroid) {
@@ -32,19 +33,20 @@ class Ship{
       stroke(255);
       triangle(-this.radius, this.radius, this.radius, this.radius, 0, -this.radius);
       pop();
+      
     }
   
     setRotation(targetX, targetY) {
-      this.heading = atan2(targetY - height / 2, targetX - width / 2);
+      this.heading = atan2(targetY - this.pos.y, targetX - this.pos.x)
     }
   
     turn() {
-          // No need to modify anything in this method.
-          this.heading += this.rotation;
+      // No need to modify anything in this method.
+      this.heading += this.rotation;
     }
 
     shoot() {
       // Create and return a new Laser instance based on ship's position and heading
       return new Laser(this.pos, this.heading);
-      }
+    }
   }

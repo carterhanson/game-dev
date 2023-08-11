@@ -15,6 +15,7 @@ function draw() {
   renderShip();
   renderAsteroids();
   renderLasers();
+  ship.update();
 }
 
 function renderShip(){
