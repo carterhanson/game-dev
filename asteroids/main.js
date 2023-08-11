@@ -1,5 +1,5 @@
 const FIRE_KEY = 32; // space bar
-const NUM_ASTEROIDS = 7;
+const NUM_ASTEROIDS = 9;
 let ship;
 let asteroids = [];
 let lasers = [];
